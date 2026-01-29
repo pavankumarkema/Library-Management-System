@@ -1,0 +1,20 @@
+
+{
+	"name": "library_manaegement_system",
+	"version": "1.0.0",
+	"private": true,
+	"workspaces": [
+		"client",
+		"server"
+	],
+	"scripts": {
+		"start": "node server/server.js",
+		"client": "npm --prefix client start",
+		"server": "npm --prefix server start",
+		"dev": "concurrently \"npm --prefix server start\" \"npm --prefix client start\""
+	},
+	"devDependencies": {
+		"concurrently": "^8.2.0"
+	},
+	"license": "MIT"
+}
