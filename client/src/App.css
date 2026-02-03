@@ -5,76 +5,245 @@ body {
   background: linear-gradient(135deg, #f3f5f9 0%, #e8ecf1 100%);
   color: #1f2937;
   line-height: 1.6;
+  overflow-x: hidden;
 }
+
+/* ============================================
+   Animated Background System
+   Subtle, non-intrusive animations for visual appeal
+============================================ */
 
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  background: linear-gradient(-45deg, #f3f5f9, #e8ecf1, #f0f4f8, #e8ecf1);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
 }
 
+/* ============================================
+   Gradient Animation - Smooth Color Transitions
+============================================ */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ============================================
+   Background Floating Elements (Non-Interactive)
+============================================ */
+
+/* Floating Orb 1 - Top Right */
+.App::before {
+  content: '';
+  position: fixed;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%);
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+
+/* Floating Orb 2 - Bottom Left */
+.App::after {
+  content: '';
+  position: fixed;
+  bottom: -150px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0) 70%);
+  border-radius: 50%;
+  animation: float 25s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+
+/* ============================================
+   Floating Animation - Smooth Wave Motion
+============================================ */
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 40px) scale(1);
+  }
+  75% {
+    transform: translate(40px, 20px) scale(0.95);
+  }
+}
+
+/* ============================================
+   Additional Floating Elements - Subtle Shapes
+============================================ */
+
+/* Floating Element 3 - Center-Left (Particle-like) */
+.main-content::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.08) 0%, rgba(96, 165, 250, 0) 70%);
+  border-radius: 50%;
+  animation: drift 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+
+/* Floating Element 4 - Right Side (Soft Glow) */
+.main-content::after {
+  content: '';
+  position: fixed;
+  top: 30%;
+  right: 5%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, rgba(168, 85, 247, 0) 70%);
+  border-radius: 50%;
+  animation: drift 35s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+
+/* ============================================
+   Drift Animation - Slow Wandering Motion
+============================================ */
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(50px, -60px);
+  }
+  50% {
+    transform: translate(-40px, 80px);
+  }
+  75% {
+    transform: translate(60px, -40px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ============================================
+   Wave Animation - Subtle Background Wave
+============================================ */
+@keyframes wave {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px);
+  }
+  50% {
+    transform: translateX(40px) translateY(0);
+  }
+  75% {
+    transform: translateX(20px) translateY(10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* ============================================
+   Pulse Animation - Subtle Glow Effect
+============================================ */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Additional subtle background accent */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23667eea' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -2;
+  animation: patternShift 20s linear infinite;
+}
+
+@keyframes patternShift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+/* ============================================
+   Respect User's Motion Preferences
+============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .App,
+  .App::before,
+  .App::after,
+  .main-content::before,
+  .main-content::after,
+  body::before {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   Main Content Layout
+============================================ */
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  color: white;
-  padding: 14px 20px;
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  border-bottom: 2px solid #3b82f6;
-}
+/* Navigation is now in Navbar.css for better organization */
 
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  padding: 6px 10px;
-  border-radius: 4px;
-}
-
-nav a:hover {
-  background-color: rgba(59, 130, 246, 0.2);
-  color: #60a5fa;
-}
-
-nav a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+a:focus-visible {
   outline: 3px solid rgba(96, 165, 250, 0.9);
   outline-offset: 2px;
 }
 
-nav button {
-  padding: 9px 16px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-nav button:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
-  transform: translateY(-2px);
-}
-
+/* ============================================
+   Button & Interactive Elements Hover Effects
+============================================ */
 button {
   padding: 10px 16px;
   border-radius: 8px;
@@ -84,16 +253,42 @@ button {
   cursor: pointer;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.35, 0.66, 0.04, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
+button:active:not(:disabled) {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Links Hover Effects
+============================================ */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+/* ============================================
+   Link Button Styles
+============================================ */
 .link-btn {
   display: inline-block;
   padding: 10px 16px;
@@ -103,14 +298,19 @@ button:hover {
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.35, 0.66, 0.04, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
 }
 
 .link-btn:hover {
   background: linear-gradient(135deg, #0f172a 0%, #020617 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 
 .site-footer {
@@ -120,8 +320,182 @@ button:hover {
   background: #f8fafc;
   border-top: 1px solid #e2e8f0;
   font-size: 0.9rem;
+  line-height: 1.6;
 }
 
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large Tablet / Small Desktop: 1024px - 1279px */
+@media (max-width: 1279px) {
+  .page-container {
+    max-width: 1024px;
+    padding: 28px 20px 40px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Tablet: 768px - 1023px */
+@media (max-width: 1023px) {
+  .page-container {
+    padding: 24px 18px 36px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}
+
+/* Mobile Landscape / Small Tablet: 600px - 767px */
+@media (max-width: 767px) {
+  .page-container {
+    padding: 20px 16px 32px;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 12px 16px;
+  }
+
+  .issue-visual,
+  .return-visual {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .issue-visual__icon,
+  .return-visual__icon {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile Portrait: 480px - 599px */
+@media (max-width: 599px) {
+  .page-container {
+    padding: 18px 14px 28px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr));
+    gap: 14px;
+  }
+}
+
+/* Extra Small Mobile: 320px - 479px */
+@media (max-width: 479px) {
+  .page-container {
+    padding: 16px 12px 24px;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .link-btn {
+    width: 100%;
+  }
+
+  .issue-visual,
+  .return-visual {
+    padding: 12px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  .link-btn,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  button:active,
+  .link-btn:active,
+  a:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -135,6 +509,7 @@ button:hover {
   margin: 0 auto;
   width: 100%;
   flex: 1;
+  box-sizing: border-box;
 }
 
 .page-title {
@@ -145,18 +520,20 @@ button:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.2;
 }
 
 .page-subtitle {
   margin: 0 0 28px;
   color: #475569;
   font-size: 1.05rem;
+  line-height: 1.5;
 }
 
 .card-grid {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
 }
 
 .card {

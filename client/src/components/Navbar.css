@@ -1,0 +1,568 @@
+/* ============================================
+   Navbar Component Styles - Mobile First
+   Fully Responsive for All Devices
+============================================ */
+
+/* Backdrop overlay for mobile menu */
+.nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 998;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Main navbar container */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-bottom: 2px solid rgba(59, 130, 246, 0.5);
+  width: 100%;
+}
+
+/* Container for navbar content */
+.nav-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  position: relative;
+}
+
+/* Brand logo */
+.nav-brand {
+  font-size: 1.3rem;
+  font-weight: 800;
+  z-index: 1001;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.nav-brand a {
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s ease;
+  display: inline-block;
+}
+
+.nav-brand a:hover,
+.nav-brand a:focus-visible {
+  opacity: 0.85;
+  outline: 2px solid #60a5fa;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   Hamburger Menu Button (Mobile/Tablet)
+============================================ */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+}
+
+.hamburger:hover,
+.hamburger:focus-visible {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+  outline: none;
+}
+
+.hamburger:active {
+  transform: scale(0.95);
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .hamburger:hover {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  
+  .hamburger:active {
+    background-color: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  border-radius: 3px;
+  transform-origin: center;
+  display: block;
+}
+
+/* Hamburger animation - X icon when active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ============================================
+   Mobile Navigation Links (Slide-in Menu)
+============================================ */
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80vw;
+  max-width: 320px;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 80px 20px 20px;
+  gap: 4px;
+  transition: right 0.35s cubic-bezier(0.4, 0.0, 0.2, 1);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  z-index: 999;
+}
+
+.nav-links.active {
+  right: 0;
+}
+
+/* Navigation links styling */
+.nav-links a,
+.nav-links button {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 1.05rem;
+  transition: all 0.25s ease;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  font-family: inherit;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links button:hover,
+.nav-links button:focus-visible {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  outline: 2px solid #60a5fa;
+  outline-offset: -2px;
+}
+
+.nav-links a:active,
+.nav-links button:active {
+  background-color: rgba(59, 130, 246, 0.3);
+  transform: scale(0.98);
+}
+
+/* Special styling for register button in mobile menu */
+.nav-links .nav-register-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+.nav-links .nav-register-btn:hover,
+.nav-links .nav-register-btn:focus-visible {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+}
+
+/* Logout button styling in mobile menu */
+.nav-links .nav-logout-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  margin-top: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.nav-links .nav-logout-btn:hover,
+.nav-links .nav-logout-btn:focus-visible {
+  background: #ef4444;
+  color: white;
+  border-color: #dc2626;
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-links a:hover,
+  .nav-links button:hover {
+    background-color: transparent;
+    color: white;
+    outline: none;
+  }
+  
+  .nav-links a:active,
+  .nav-links button:active {
+    background-color: rgba(59, 130, 246, 0.25);
+  }
+
+  .nav-links .nav-register-btn:hover {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  }
+
+  .nav-links .nav-logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+  }
+}
+
+/* ============================================
+   Tablet Breakpoint (768px+)
+   Horizontal Navigation Layout
+============================================ */
+@media (min-width: 768px) {
+  /* Hide hamburger and backdrop on larger screens */
+  .hamburger {
+    display: none;
+  }
+
+  .nav-backdrop {
+    display: none;
+  }
+
+  .nav-container {
+    padding: 14px 24px;
+    min-height: 64px;
+  }
+
+  .nav-brand {
+    font-size: 1.4rem;
+  }
+
+  /* Horizontal navigation */
+  .nav-links {
+    position: static;
+    width: auto;
+    max-width: none;
+    height: auto;
+    background: transparent;
+    flex-direction: row;
+    padding: 0;
+    gap: 8px;
+    box-shadow: none;
+    overflow: visible;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex: 1;
+    margin-left: 24px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    min-height: 36px;
+    width: auto;
+    transition: all 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible,
+  .nav-links button:hover,
+  .nav-links button:focus-visible {
+    background-color: rgba(59, 130, 246, 0.2);
+    transform: translateY(-2px);
+    outline-offset: 2px;
+  }
+
+  .nav-links a:active,
+  .nav-links button:active {
+    transform: translateY(0);
+  }
+
+  /* Register button styling for tablet+ */
+  .nav-links .nav-register-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    margin-top: 0;
+    margin-left: 4px;
+    font-weight: 700;
+  }
+
+  .nav-links .nav-register-btn:hover,
+  .nav-links .nav-register-btn:focus-visible {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  }
+
+  /* Logout button styling for tablet+ */
+  .nav-links .nav-logout-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    margin-top: 0;
+    margin-left: 4px;
+  }
+
+  .nav-links .nav-logout-btn:hover,
+  .nav-links .nav-logout-btn:focus-visible {
+    background: #ef4444;
+    color: white;
+    border-color: #dc2626;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  }
+}
+
+/* ============================================
+   Desktop Breakpoint (1024px+)
+   Optimized Spacing and Typography
+============================================ */
+@media (min-width: 1024px) {
+  .nav-container {
+    padding: 14px 32px;
+    min-height: 68px;
+    max-width: 1400px;
+  }
+
+  .nav-brand {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    gap: 12px;
+    margin-left: 32px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    min-height: 40px;
+  }
+}
+
+/* ============================================
+   Large Desktop (1280px+)
+   Maximum Width and Spacing
+============================================ */
+@media (min-width: 1280px) {
+  .nav-container {
+    padding: 16px 48px;
+    min-height: 72px;
+    max-width: 1600px;
+  }
+
+  .nav-brand {
+    font-size: 1.6rem;
+  }
+
+  .nav-links {
+    gap: 16px;
+    margin-left: 40px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    padding: 10px 20px;
+    font-size: 1.05rem;
+  }
+}
+
+/* ============================================
+   Extra Large Desktop (1600px+)
+   Ultra-wide Screen Optimization
+============================================ */
+@media (min-width: 1600px) {
+  .nav-container {
+    max-width: 1800px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+}
+
+/* ============================================
+   Accessibility & Motion Preferences
+============================================ */
+
+/* Focus visible outlines for keyboard navigation */
+.hamburger:focus-visible,
+.nav-links a:focus-visible,
+.nav-links button:focus-visible,
+.nav-brand a:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hamburger span,
+  .hamburger,
+  .nav-links,
+  .nav-links a,
+  .nav-links button,
+  .nav-brand a,
+  .nav-backdrop {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: none;
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: none;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:active,
+  .nav-links button:hover,
+  .nav-links button:active {
+    transform: none;
+  }
+}
+
+/* ============================================
+   Mobile-Specific Fixes
+============================================ */
+
+/* Fix for iOS Safari bottom bar */
+@supports (-webkit-touch-callout: none) {
+  .nav-links {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Prevent text selection on double-tap */
+.hamburger,
+.nav-brand {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Remove tap highlight on mobile */
+.hamburger,
+.nav-links a,
+.nav-links button,
+.nav-brand a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
+   Landscape Orientation Fixes (Mobile)
+============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .nav-links {
+    padding-top: 70px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    padding: 10px 18px;
+    min-height: 40px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================================
+   Foldable Device Support
+============================================ */
+@media (min-width: 600px) and (max-width: 767px) {
+  .nav-links {
+    width: 70vw;
+    max-width: 350px;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    font-size: 1.1rem;
+    padding: 16px 20px;
+  }
+}
+
+/* ============================================
+   Print Styles
+============================================ */
+@media print {
+  .navbar {
+    position: static;
+    box-shadow: none;
+  }
+
+  .hamburger,
+  .nav-backdrop {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+}

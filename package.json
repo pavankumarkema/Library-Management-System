@@ -1,20 +1,16 @@
 
 {
-	"name": "library_manaegement_system",
+	"name": "library-management-system",
 	"version": "1.0.0",
 	"private": true,
-	"workspaces": [
-		"client",
-		"server"
-	],
+	"description": "A modern, fully responsive Library Management System frontend application",
 	"scripts": {
-		"start": "node server/server.js",
-		"client": "npm --prefix client start",
-		"server": "npm --prefix server start",
-		"dev": "concurrently \"npm --prefix server start\" \"npm --prefix client start\""
+		"start": "cd client && npm start",
+		"build": "cd client && npm run build",
+		"dev": "cd client && npm start",
+		"test": "cd client && npm test"
 	},
-	"devDependencies": {
-		"concurrently": "^8.2.0"
-	},
+	"keywords": ["library", "book-management", "react", "responsive"],
+	"author": "Frontend Developer",
 	"license": "MIT"
 }

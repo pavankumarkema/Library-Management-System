@@ -32,7 +32,7 @@
 
 .admin-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
   gap: 30px;
   max-width: 1400px;
   margin: 0 auto;
@@ -400,20 +400,90 @@
   background: #94a3b8;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large Desktop: 1280px and up */
+@media (min-width: 1280px) {
+  .admin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 1024px - 1279px */
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .admin-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .admin-dashboard {
+    padding: 28px 4%;
+  }
+
+  .admin-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablet Landscape: 900px - 1023px */
+@media (max-width: 1023px) {
   .admin-grid {
     grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .admin-dashboard {
+    padding: 26px 4%;
   }
 
   .admin-header h1 {
     font-size: 2.3rem;
   }
+
+  .admin-header p {
+    font-size: 1.05rem;
+  }
 }
 
-@media (max-width: 768px) {
+/* Tablet Portrait: 768px - 899px */
+@media (max-width: 899px) {
   .admin-dashboard {
-    padding: 20px 3%;
+    padding: 24px 4%;
+  }
+
+  .admin-header {
+    margin-bottom: 35px;
+  }
+
+  .admin-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .admin-header p {
+    font-size: 1.02rem;
+  }
+
+  .section-header {
+    padding: 20px;
+  }
+
+  .section-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .section-body {
+    padding: 20px;
+  }
+
+  .admin-grid {
+    gap: 24px;
+  }
+}
+
+/* Mobile Landscape / Small Tablet: 600px - 767px */
+@media (max-width: 767px) {
+  .admin-dashboard {
+    padding: 22px 4%;
   }
 
   .admin-header {
@@ -421,7 +491,7 @@
   }
 
   .admin-header h1 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .admin-header p {
@@ -433,11 +503,30 @@
   }
 
   .section-header h2 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
 
   .section-body {
     padding: 18px;
+  }
+
+  .admin-grid {
+    gap: 22px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    font-size: 0.92rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 11px 14px;
+    font-size: 0.95rem;
   }
 
   .requests-list {
@@ -445,39 +534,74 @@
   }
 
   .books-list {
-    max-height: 300px;
+    max-height: 350px;
   }
 
   .request-actions {
-    gap: 6px;
+    gap: 8px;
   }
 
   .request-btn {
-    min-width: 80px;
-    font-size: 0.8rem;
-    padding: 6px 10px;
+    min-width: 85px;
+    font-size: 0.85rem;
+    padding: 8px 12px;
   }
 
-  .request-item {
-    flex-direction: column;
+  .submit-btn {
+    padding: 11px 16px;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile Portrait: 480px - 599px */
+@media (max-width: 599px) {
   .admin-dashboard {
-    padding: 16px 2%;
+    padding: 20px 4%;
   }
 
   .admin-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .admin-header p {
-    font-size: 0.95rem;
+    font-size: 1.7rem;
   }
 
   .admin-grid {
     gap: 20px;
+  }
+
+  .request-item {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .request-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .request-btn {
+    flex: 1;
+  }
+}
+
+/* Extra Small Mobile: 320px - 479px */
+@media (max-width: 479px) {
+  .admin-dashboard {
+    padding: 18px 4%;
+  }
+
+  .admin-header {
+    margin-bottom: 26px;
+  }
+
+  .admin-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .admin-header p {
+    font-size: 0.92rem;
+  }
+
+  .admin-grid {
+    gap: 18px;
   }
 
   .section-header {
@@ -485,7 +609,7 @@
   }
 
   .section-header h2 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .section-body {
@@ -493,48 +617,104 @@
   }
 
   .form-group {
-    margin-bottom: 14px;
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
   }
 
   .form-group input,
   .form-group select,
   .form-group textarea {
-    padding: 10px 12px;
-    font-size: 0.9rem;
+    padding: 11px 13px;
+    font-size: 0.92rem;
   }
 
   .requests-list {
-    max-height: 300px;
+    max-height: 320px;
   }
 
   .books-list {
     grid-template-columns: 1fr;
-    max-height: 250px;
+    max-height: 280px;
+    gap: 12px;
   }
 
   .request-item {
-    padding: 12px;
+    padding: 14px;
   }
 
   .request-actions {
     flex-direction: column;
+    gap: 10px;
   }
 
   .request-btn {
     width: 100%;
+    min-width: unset;
+    padding: 11px 16px;
   }
 
   .submit-btn {
-    padding: 10px 16px;
-    font-size: 0.9rem;
+    padding: 12px 16px;
+    font-size: 0.92rem;
+    width: 100%;
   }
 
   .book-item {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    padding: 14px;
   }
 
   .delete-btn {
     width: 100%;
+    padding: 10px 16px;
+  }
+}
+
+/* Very Small Mobile: 320px and below */
+@media (max-width: 359px) {
+  .admin-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .section-body {
+    padding: 14px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .admin-section:hover {
+    transform: none;
+  }
+
+  .admin-section:active {
+    transform: scale(0.99);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 44px;
+  }
+
+  .submit-btn,
+  .request-btn,
+  .delete-btn {
+    min-height: 44px;
+  }
+
+  .submit-btn:active,
+  .request-btn:active,
+  .delete-btn:active {
+    transform: scale(0.98);
   }
 }

@@ -5,7 +5,7 @@ import './Dashboard.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, isAdmin, user, logout } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   const handleLogin = () => {
     navigate('/login');
@@ -13,10 +13,6 @@ const Dashboard = () => {
 
   const handleRegister = () => {
     navigate('/register');
-  };
-
-  const handleAbout = () => {
-    navigate('/about');
   };
 
   const handleBooks = () => {
@@ -35,46 +31,9 @@ const Dashboard = () => {
     navigate('/issue');
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
-
   return (
     <div className="dashboard">
-     
-      <header className="dashboard-header">
-        <div className="header-left">
-          <h1 className="logo">LibraTech</h1>
-        </div>
-        <div className="header-right">
-          {isAuthenticated ? (
-            <>
-              <span style={{ color: '#fff', marginRight: '12px' }}>Welcome, {user?.name}!</span>
-              <button className="header-btn" onClick={isAdmin ? () => navigate('/admin') : handleProfile}>
-                {isAdmin ? 'Admin Panel' : 'My Profile'}
-              </button>
-              <button className="header-btn" onClick={handleLogout} style={{ background: '#ef4444' }}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <button className="header-btn login-btn" onClick={handleLogin}>
-                Login
-              </button>
-              <button className="header-btn about-btn" onClick={handleAbout}>
-                About
-              </button>
-              <button className="header-btn register-btn" onClick={handleRegister}>
-                Sign Up
-              </button>
-            </>
-          )}
-        </div>
-      </header>
-
-  
+      {/* Removed duplicate dashboard header - using main Navbar component */}
       <section className="hero">
         <div className="hero-content">
           <h1>Welcome to <span className="highlight">LibraTech</span></h1>

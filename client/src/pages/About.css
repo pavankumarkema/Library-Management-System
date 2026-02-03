@@ -181,19 +181,56 @@
   }
 }
 
-@media (max-width: 1024px) {
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Desktop: 1024px - 1279px */
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .about-hero {
+    padding: 75px 5%;
+  }
+
+  .about-hero h1 {
+    font-size: 2.6rem;
+  }
+
+  .about-content .container {
+    max-width: 950px;
+  }
+}
+
+/* Tablet Landscape: 900px - 1023px */
+@media (max-width: 1023px) {
+  .about-hero {
+    padding: 70px 5%;
+  }
+
   .about-hero h1 {
     font-size: 2.3rem;
   }
 
+  .about-hero .lead {
+    font-size: 1.08rem;
+  }
+
   .about-content h2 {
     font-size: 1.7rem;
+    margin-top: 1.8rem;
+  }
+
+  .about-content p {
+    font-size: 0.98rem;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablet Portrait: 768px - 899px */
+@media (max-width: 899px) {
   .about-hero {
-    padding: 60px 5%;
+    padding: 65px 5%;
+  }
+
+  .about-hero h1 {
+    font-size: 2.1rem;
+    margin-bottom: 12px;
   }
 
   .about-hero .lead {
@@ -201,71 +238,180 @@
   }
 
   .about-content .container {
-    padding: 0 15px 40px;
-    margin: 30px auto;
+    padding: 0 18px 50px;
+    margin: 35px auto;
   }
 
   .about-content h2 {
-    font-size: 1.6rem;
+    font-size: 1.65rem;
+    margin-top: 1.6rem;
+  }
+
+  .features-list li {
+    padding-left: 26px;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+}
+
+/* Mobile Landscape / Small Tablet: 600px - 767px */
+@media (max-width: 767px) {
+  .about-hero {
+    padding: 55px 4%;
+  }
+
+  .about-hero .about-inner {
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    font-size: 1.9rem;
+    margin-bottom: 10px;
+  }
+
+  .about-hero .lead {
+    font-size: 1.02rem;
+  }
+
+  .about-content .container {
+    padding: 0 16px 45px;
+    margin: 32px auto;
+  }
+
+  .about-content h2 {
+    font-size: 1.55rem;
     margin-top: 1.5rem;
   }
 
   .about-content p {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    margin-bottom: 0.9rem;
   }
 
   .features-list li {
-    padding-left: 25px;
-    font-size: 0.95rem;
+    padding-left: 24px;
+    font-size: 0.92rem;
   }
 
   .btn-primary.small {
-    padding: 9px 16px;
-    font-size: 0.9rem;
+    padding: 10px 18px;
+    font-size: 0.88rem;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile Portrait: 480px - 599px */
+@media (max-width: 599px) {
   .about-hero {
-    padding: 40px 3%;
+    padding: 50px 4%;
   }
 
   .about-hero h1 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-  }
-
-  .about-hero .lead {
-    font-size: 1rem;
+    font-size: 1.7rem;
   }
 
   .about-content .container {
-    padding: 0 10px 30px;
-    margin: 20px auto;
+    margin: 28px auto;
+  }
+
+  .about-content h2 {
+    font-size: 1.45rem;
+  }
+
+  .btn-primary.small {
+    padding: 10px 18px;
+  }
+}
+
+/* Extra Small Mobile: 320px - 479px */
+@media (max-width: 479px) {
+  .about-hero {
+    padding: 45px 4%;
+  }
+
+  .about-hero h1 {
+    font-size: 1.55rem;
+    margin-bottom: 10px;
+  }
+
+  .about-hero .lead {
+    font-size: 0.95rem;
+  }
+
+  .about-content .container {
+    padding: 0 14px 35px;
+    margin: 25px auto;
   }
 
   .about-content h2 {
     font-size: 1.4rem;
-    margin-top: 1.3rem;
+    margin-top: 1.4rem;
+    margin-bottom: 0.9rem;
   }
 
   .about-content p {
     font-size: 0.9rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .features-list {
+    margin: 10px 0 20px 0;
   }
 
   .features-list li {
     padding-left: 22px;
     font-size: 0.9rem;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
+  }
+
+  .features-list li::before {
+    font-size: 1.1rem;
   }
 
   .cta {
-    margin-top: 20px;
+    margin-top: 22px;
   }
 
   .btn-primary.small {
-    padding: 8px 14px;
+    padding: 11px 18px;
+    font-size: 0.88rem;
+  }
+}
+
+/* Very Small Mobile: 320px and below */
+@media (max-width: 359px) {
+  .about-hero {
+    padding: 40px 3%;
+  }
+
+  .about-hero h1 {
+    font-size: 1.45rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .btn-primary.small {
+    padding: 10px 16px;
     font-size: 0.85rem;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn-primary.small {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary.small:hover {
+    transform: none;
+  }
+
+  .btn-primary.small:active {
+    transform: scale(0.98);
   }
 }

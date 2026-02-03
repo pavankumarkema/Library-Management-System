@@ -62,7 +62,7 @@
 
 .issued-books {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
@@ -275,21 +275,76 @@
   }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Desktop: 1024px - 1279px */
+@media (max-width: 1279px) and (min-width: 1024px) {
   .issued-books {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+    gap: 22px;
+  }
+
+  .mybooks-page {
+    padding: 28px 4%;
+  }
+
+  .mybooks-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Tablet Landscape: 900px - 1023px */
+@media (max-width: 1023px) {
+  .mybooks-page {
+    padding: 26px 4%;
   }
 
   .mybooks-header h1 {
     font-size: 2.3rem;
   }
+
+  .mybooks-header p {
+    font-size: 1.05rem;
+  }
+
+  .issued-books {
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 20px;
+  }
 }
 
-@media (max-width: 768px) {
+/* Tablet Portrait: 768px - 899px */
+@media (max-width: 899px) {
   .mybooks-page {
-    padding: 20px 3%;
+    padding: 24px 4%;
+  }
+
+  .mybooks-header {
+    margin-bottom: 35px;
+  }
+
+  .mybooks-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .mybooks-header p {
+    font-size: 1.02rem;
+  }
+
+  .status-tabs {
+    margin-bottom: 26px;
+  }
+
+  .issued-books {
+    grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+    gap: 18px;
+  }
+}
+
+/* Mobile Landscape / Small Tablet: 600px - 767px */
+@media (max-width: 767px) {
+  .mybooks-page {
+    padding: 22px 4%;
   }
 
   .mybooks-header {
@@ -297,11 +352,20 @@
   }
 
   .mybooks-header h1 {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .mybooks-header p {
     font-size: 1rem;
+  }
+
+  .status-tabs {
+    gap: 10px;
+  }
+
+  .status-tab {
+    padding: 9px 18px;
+    font-size: 0.9rem;
   }
 
   .issued-books {
@@ -309,14 +373,28 @@
     gap: 16px;
   }
 
+  .book-card-header {
+    padding: 18px;
+  }
+
+  .book-card-header h3 {
+    font-size: 1.15rem;
+  }
+
+  .book-card-body {
+    padding: 18px;
+  }
+
   .card-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 6px;
     margin-bottom: 10px;
   }
 
   .card-footer {
     flex-direction: column;
+    gap: 10px;
   }
 
   .return-btn,
@@ -325,30 +403,59 @@
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile Portrait: 480px - 599px */
+@media (max-width: 599px) {
   .mybooks-page {
-    padding: 16px 2%;
+    padding: 20px 4%;
   }
 
   .mybooks-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .mybooks-header p {
-    font-size: 0.95rem;
+    font-size: 1.7rem;
   }
 
   .status-tabs {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+  }
+
+  .issued-books {
+    gap: 14px;
+  }
+}
+
+/* Extra Small Mobile: 320px - 479px */
+@media (max-width: 479px) {
+  .mybooks-page {
+    padding: 18px 4%;
+  }
+
+  .mybooks-header {
+    margin-bottom: 26px;
+  }
+
+  .mybooks-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .mybooks-header p {
+    font-size: 0.92rem;
+  }
+
+  .status-tabs {
+    margin-bottom: 22px;
+    gap: 8px;
   }
 
   .status-tab {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+    padding: 9px 16px;
+    font-size: 0.88rem;
   }
 
   .issued-books {
     gap: 12px;
+  }
+
+  .issued-book-card {
+    border-radius: 14px;
   }
 
   .book-card-header {
@@ -356,7 +463,7 @@
   }
 
   .book-card-header h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 
   .book-card-body {
@@ -364,12 +471,12 @@
   }
 
   .card-row {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
   }
 
   .status-badge {
-    padding: 4px 10px;
-    font-size: 0.8rem;
+    padding: 5px 11px;
+    font-size: 0.82rem;
   }
 
   .card-footer {
@@ -378,7 +485,46 @@
 
   .return-btn,
   .cancel-btn {
-    padding: 8px 12px;
+    padding: 11px 16px;
+    font-size: 0.88rem;
+  }
+}
+
+/* Very Small Mobile: 320px and below */
+@media (max-width: 359px) {
+  .mybooks-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .status-tab {
+    padding: 8px 14px;
     font-size: 0.85rem;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .issued-book-card:hover {
+    transform: none;
+  }
+
+  .issued-book-card:active {
+    transform: scale(0.99);
+  }
+
+  .status-tab,
+  .return-btn,
+  .cancel-btn {
+    min-height: 44px;
+  }
+
+  .status-tab:hover {
+    transform: none;
+  }
+
+  .status-tab:active,
+  .return-btn:active,
+  .cancel-btn:active {
+    transform: scale(0.98);
   }
 }
