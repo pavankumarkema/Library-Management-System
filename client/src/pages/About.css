@@ -1,5 +1,5 @@
 .about-page {
-  min-height: 100vh;
+  min-height: 100%;
   background: linear-gradient(180deg, #f7f8fc 0%, #ffffff 100%);
   color: #222;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
@@ -68,4 +68,204 @@
 
 @media (max-width: 720px) {
   .about-hero h1 { font-size: 1.8rem; }
+}
+
+/* Modern overrides and animations */
+.about-page {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.about-hero {
+  position: relative;
+  overflow: hidden;
+  animation: slideDown 0.6s ease-out;
+}
+
+.about-hero .about-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+
+.about-hero .lead {
+  font-size: 1.15rem;
+}
+
+.about-content .container {
+  animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+.about-content h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-content p {
+  color: #475569;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.features-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.features-list li {
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 12px;
+  color: #475569;
+}
+
+.features-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.btn-primary.small {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary.small:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.cta {
+  animation: slideUp 0.5s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .about-hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 60px 5%;
+  }
+
+  .about-hero .lead {
+    font-size: 1.05rem;
+  }
+
+  .about-content .container {
+    padding: 0 15px 40px;
+    margin: 30px auto;
+  }
+
+  .about-content h2 {
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+  }
+
+  .about-content p {
+    font-size: 0.95rem;
+  }
+
+  .features-list li {
+    padding-left: 25px;
+    font-size: 0.95rem;
+  }
+
+  .btn-primary.small {
+    padding: 9px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 40px 3%;
+  }
+
+  .about-hero h1 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .about-hero .lead {
+    font-size: 1rem;
+  }
+
+  .about-content .container {
+    padding: 0 10px 30px;
+    margin: 20px auto;
+  }
+
+  .about-content h2 {
+    font-size: 1.4rem;
+    margin-top: 1.3rem;
+  }
+
+  .about-content p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .features-list li {
+    padding-left: 22px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .cta {
+    margin-top: 20px;
+  }
+
+  .btn-primary.small {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
 }

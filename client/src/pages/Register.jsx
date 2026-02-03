@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Register.css';
 
@@ -21,10 +21,6 @@ const Register = () => {
     navigate('/');
   };
 
-  const handleLogin = () => {
-    navigate('/login');
-  };
-
   return (
     <div className="register-page">
       <div className="register-container">
@@ -35,7 +31,7 @@ const Register = () => {
 
         <form onSubmit={handleSubmit} className="register-form">
           {(formError || authError) && (
-            <div className="form-error">{formError || authError}</div>
+            <div className="error-message">{formError || authError}</div>
           )}
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
@@ -77,7 +73,7 @@ const Register = () => {
         </form>
 
         <div className="login-link">
-          Already have an account? <button onClick={handleLogin} className="login-link-btn">Sign in here</button>
+          Already have an account? <Link to="/login">Sign in here</Link>
         </div>
       </div>
     </div>

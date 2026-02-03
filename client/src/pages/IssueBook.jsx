@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getBookById, getBooks } from '../services/bookService';
 import { requestBook } from '../services/issueService';
 import { useAuth } from '../context/AuthContext';
+import { getBookCover } from '../utils/bookCovers';
+import './IssueBook.css';
 
 const IssueBook = () => {
 	const { user } = useAuth();
@@ -22,53 +24,70 @@ const IssueBook = () => {
 	};
 
 	return (
-		<div className="page-container">
-			<h2 className="page-title">Issue a Book</h2>
-			<div className="issue-visual">
-				<div className="issue-visual__icon" aria-hidden="true">📘✨</div>
-				<div>
-					<strong>Request a book</strong>
+		<div className="issuebook-page">
+			<div className="issuebook-container">
+				<div className="issuebook-header">
+					<h1>Request a Book</h1>
 					<p>Pick a title, set a due date, and wait for admin approval.</p>
 				</div>
-			</div>
-			<form onSubmit={handleSubmit} className="card">
-				<div style={{ marginBottom: '12px' }}>
-					<label htmlFor="book">Select Book</label>
-					<select
-						id="book"
-						value={selectedBookId}
-						onChange={(e) => setSelectedBookId(e.target.value)}
-						style={{ display: 'block', width: '100%', padding: '8px', marginTop: '8px' }}
-						required
-					>
-						{allBooks.map((book) => (
-							<option key={book.id} value={book.id}>
-								{book.title} — {book.author}
-							</option>
-						))}
-					</select>
-				</div>
 
-				<div style={{ marginBottom: '12px' }}>
-					<label htmlFor="dueDate">Due Date</label>
-					<input
-						id="dueDate"
-						type="date"
-						value={dueDate}
-						onChange={(e) => setDueDate(e.target.value)}
-						style={{ display: 'block', width: '100%', padding: '8px', marginTop: '8px' }}
-						required
-					/>
-				</div>
-
-				{selectedBook && (
-					<div style={{ marginBottom: '12px' }}>
-						<strong>Selected:</strong> {selectedBook.title} by {selectedBook.author}
+				<form onSubmit={handleSubmit} className="issuebook-form">
+					<div className="form-group">
+						<label htmlFor="book">Select Book</label>
+						<select
+							id="book"
+							value={selectedBookId}
+							onChange={(e) => setSelectedBookId(e.target.value)}
+							required
+						>
+							{allBooks.map((book) => (
+								<option key={book.id} value={book.id}>
+									{book.title} — {book.author}
+								</option>
+							))}
+						</select>
 					</div>
-				)}
 
-<button type="submit">Request Book</button>
-			</form>
+					<div className="form-group">
+						<label htmlFor="dueDate">Due Date</label>
+						<input
+							id="dueDate"
+							type="date"
+							value={dueDate}
+							onChange={(e) => setDueDate(e.target.value)}
+							required
+						/>
+					</div>
+
+					{selectedBook && (() => {
+						const { src, alt, fallbackSrc } = getBookCover(selectedBook);
+						return (
+							<div className="selected-preview">
+								<img
+									className="selected-cover"
+									src={src}
+									alt={alt}
+									loading="lazy"
+									onError={(event) => {
+										event.currentTarget.src = fallbackSrc;
+									}}
+								/>
+								<div>
+									<strong>{selectedBook.title}</strong>
+									<p>by {selectedBook.author}</p>
+								</div>
+							</div>
+						);
+					})()}
+
+					<div className="button-group">
+						<button type="submit" className="submit-btn">Request Book</button>
+						<button type="button" className="cancel-btn" onClick={() => navigate('/books')}>
+							Cancel
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };

@@ -9,6 +9,7 @@ import IssueBook from './pages/IssueBook';
 import MyBooks from './pages/MyBooks';
 import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
+import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -20,52 +21,55 @@ function App() {
     <Router>
       <div className="App">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/about" element={<About />} />
-          <Route
-            path="/books"
-            element={
-              <ProtectedRoute>
-                <Books />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/issue"
-            element={
-              <ProtectedRoute>
-                <IssueBook />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/my-books"
-            element={
-              <ProtectedRoute>
-                <MyBooks />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            }
-          />
-        </Routes>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/books"
+              element={
+                <ProtectedRoute>
+                  <Books />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/issue"
+              element={
+                <ProtectedRoute>
+                  <IssueBook />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-books"
+              element={
+                <ProtectedRoute>
+                  <MyBooks />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>

@@ -1,0 +1,384 @@
+/* My Books Page Styles */
+
+.mybooks-page {
+  min-height: 100%;
+  background: linear-gradient(135deg, #f3f5f9 0%, #e8ecf1 100%);
+  padding: 30px 5%;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.mybooks-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: slideDown 0.6s ease-out;
+}
+
+.mybooks-header h1 {
+  font-size: 2.8rem;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mybooks-header p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.status-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  animation: slideUp 0.6s ease-out 0.1s both;
+}
+
+.status-tab {
+  padding: 10px 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 25px;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.status-tab:hover,
+.status-tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.issued-books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.issued-book-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: scaleIn 0.5s ease-out backwards;
+  border-left: 5px solid #667eea;
+  display: flex;
+  flex-direction: column;
+}
+
+.issued-book-card:nth-child(1) { animation-delay: 0.05s; }
+.issued-book-card:nth-child(2) { animation-delay: 0.1s; }
+.issued-book-card:nth-child(3) { animation-delay: 0.15s; }
+
+.issued-book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(102, 126, 234, 0.15);
+}
+
+.book-card-header {
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.book-mini-cover {
+  width: 52px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  flex-shrink: 0;
+}
+
+.book-card-header h3 {
+  font-size: 1.3rem;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.book-card-header p {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+  font-weight: 500;
+}
+
+.book-card-body {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.card-row:last-child {
+  margin-bottom: 0;
+}
+
+.card-label {
+  font-weight: 600;
+  color: #475569;
+}
+
+.card-value {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-issued {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-returned {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.card-footer {
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 10px;
+}
+
+.return-btn,
+.cancel-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.return-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.return-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.return-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.cancel-btn {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.cancel-btn:hover {
+  background: #e2e8f0;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 80px 20px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .issued-books {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  .mybooks-header h1 {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mybooks-page {
+    padding: 20px 3%;
+  }
+
+  .mybooks-header {
+    margin-bottom: 30px;
+  }
+
+  .mybooks-header h1 {
+    font-size: 2rem;
+  }
+
+  .mybooks-header p {
+    font-size: 1rem;
+  }
+
+  .issued-books {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card-row {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .card-footer {
+    flex-direction: column;
+  }
+
+  .return-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .mybooks-page {
+    padding: 16px 2%;
+  }
+
+  .mybooks-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .mybooks-header p {
+    font-size: 0.95rem;
+  }
+
+  .status-tabs {
+    margin-bottom: 20px;
+  }
+
+  .status-tab {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .issued-books {
+    gap: 12px;
+  }
+
+  .book-card-header {
+    padding: 16px;
+  }
+
+  .book-card-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .book-card-body {
+    padding: 16px;
+  }
+
+  .card-row {
+    font-size: 0.85rem;
+  }
+
+  .status-badge {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+
+  .card-footer {
+    padding: 12px 16px;
+  }
+
+  .return-btn,
+  .cancel-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}

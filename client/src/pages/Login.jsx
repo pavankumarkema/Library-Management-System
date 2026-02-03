@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './Login.css';
 
@@ -32,10 +32,6 @@ const Login = () => {
     setPassword(demoCredentials.admin.password);
   };
 
-  const handleRegister = () => {
-    navigate('/register');
-  };
-
   return (
     <div className="login-page">
       <div className="login-container">
@@ -46,7 +42,7 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="login-form">
           {(formError || authError) && (
-            <div className="form-error">{formError || authError}</div>
+            <div className="error-message">{formError || authError}</div>
           )}
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
@@ -81,26 +77,23 @@ const Login = () => {
               />
               Remember me
             </label>
-            <a href="/forgot-password" className="forgot-link">Forgot Password?</a>
+            <span className="forgot-link">Demo mode only</span>
           </div>
 
           <button type="submit" className="login-btn">Sign In</button>
-          <button type="button" className="login-btn" onClick={handleUseDemo}>
-            Use Demo Login
-          </button>
-          <button type="button" className="login-btn" onClick={handleUseAdminDemo}>
-            Use Admin Demo
-          </button>
+
+          <div className="demo-buttons">
+            <button type="button" className="demo-btn" onClick={handleUseDemo}>
+              Use Demo Login
+            </button>
+            <button type="button" className="demo-btn" onClick={handleUseAdminDemo}>
+              Use Admin Demo
+            </button>
+          </div>
         </form>
 
-        <div className="demo-hint">
-          Member demo: {demoCredentials.member.email} / {demoCredentials.member.password}
-          <br />
-          Admin demo: {demoCredentials.admin.email} / {demoCredentials.admin.password}
-        </div>
-
-        <div className="signup-link">
-          Don't have an account? <button onClick={handleRegister} className="register-link-btn">Sign up here</button>
+        <div className="register-link">
+          Don&apos;t have an account? <Link to="/register">Sign up here</Link>
         </div>
       </div>
     </div>
