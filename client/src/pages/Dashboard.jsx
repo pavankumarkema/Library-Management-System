@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, isAdmin, user, logout } = useAuth();
 
   const handleLogin = () => {
     navigate('/login');
@@ -17,6 +19,27 @@ const Dashboard = () => {
     navigate('/about');
   };
 
+  const handleBooks = () => {
+    navigate('/books');
+  };
+
+  const handleMyBooks = () => {
+    navigate('/my-books');
+  };
+
+  const handleProfile = () => {
+    navigate('/profile');
+  };
+
+  const handleIssue = () => {
+    navigate('/issue');
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <div className="dashboard">
      
@@ -25,15 +48,29 @@ const Dashboard = () => {
           <h1 className="logo">LibraTech</h1>
         </div>
         <div className="header-right">
-          <button className="header-btn login-btn" onClick={handleLogin}>
-            Login
-          </button>
-          <button className="header-btn about-btn" onClick={handleAbout}>
-            About
-          </button>
-          <button className="header-btn register-btn" onClick={handleRegister}>
-            Sign Up
-          </button>
+          {isAuthenticated ? (
+            <>
+              <span style={{ color: '#fff', marginRight: '12px' }}>Welcome, {user?.name}!</span>
+              <button className="header-btn" onClick={isAdmin ? () => navigate('/admin') : handleProfile}>
+                {isAdmin ? 'Admin Panel' : 'My Profile'}
+              </button>
+              <button className="header-btn" onClick={handleLogout} style={{ background: '#ef4444' }}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="header-btn login-btn" onClick={handleLogin}>
+                Login
+              </button>
+              <button className="header-btn about-btn" onClick={handleAbout}>
+                About
+              </button>
+              <button className="header-btn register-btn" onClick={handleRegister}>
+                Sign Up
+              </button>
+            </>
+          )}
         </div>
       </header>
 
@@ -43,8 +80,10 @@ const Dashboard = () => {
           <h1>Welcome to <span className="highlight">LibraTech</span></h1>
           <p>Your gateway to endless knowledge and literary adventures</p>
           <div className="hero-buttons">
-            <button className="btn-primary" onClick={handleLogin}>Explore Books</button>
-            <button className="btn-secondary" onClick={handleRegister}>Get Started</button>
+            <button className="btn-primary" onClick={handleBooks}>Explore Books</button>
+            <button className="btn-secondary" onClick={isAuthenticated ? handleMyBooks : handleRegister}>
+              {isAuthenticated ? 'My Books' : 'Get Started'}
+            </button>
           </div>
         </div>
         <div className="hero-image">
@@ -117,10 +156,16 @@ const Dashboard = () => {
       <section className="quick-actions">
         <h2>Quick Actions</h2>
         <div className="action-buttons">
-          <button className="action-btn" onClick={handleLogin}>Browse Books</button>
-          <button className="action-btn" onClick={handleLogin}>My Issued Books</button>
-          <button className="action-btn" onClick={handleLogin}>Issue a Book</button>
-          <button className="action-btn" onClick={handleRegister}>My Profile</button>
+          <button className="action-btn" onClick={isAuthenticated ? handleMyBooks : handleLogin}>
+            {isAuthenticated ? 'My Books' : 'Login to View Books'}
+          </button>
+          <button className="action-btn" onClick={isAuthenticated ? handleIssue : handleLogin}>
+            {isAuthenticated ? 'Issue a Book' : 'Login to Issue'}
+          </button>
+          <button className="action-btn" onClick={handleBooks}>Browse Books</button>
+          <button className="action-btn" onClick={isAuthenticated ? handleProfile : handleRegister}>
+            {isAuthenticated ? 'My Profile' : 'Create Account'}
+          </button>
         </div>
       </section>
     </div>

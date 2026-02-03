@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './About.css';
 
 const About = () => {
@@ -31,7 +32,7 @@ const About = () => {
 
           <div className="cta">
             <p>Ready to explore? Start browsing our collection.</p>
-            <a href="/" className="btn-primary small">Browse Books</a>
+            <Link to="/books" className="btn-primary small">Browse Books</Link>
           </div>
         </div>
       </section>

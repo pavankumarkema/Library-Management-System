@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [formError, setFormError] = useState('');
   const navigate = useNavigate();
+  const { login, authError, demoCredentials } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
-    console.log('Login attempt:', { email, password, rememberMe });
+    const result = login({ email, password, rememberMe });
+    if (result.error) {
+      setFormError(result.error);
+      return;
+    }
+
+    navigate('/', { replace: true });
+  };
+
+  const handleUseDemo = () => {
+    setEmail(demoCredentials.member.email);
+    setPassword(demoCredentials.member.password);
+  };
+
+  const handleUseAdminDemo = () => {
+    setEmail(demoCredentials.admin.email);
+    setPassword(demoCredentials.admin.password);
   };
 
   const handleRegister = () => {
@@ -27,6 +45,9 @@ const Login = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="login-form">
+          {(formError || authError) && (
+            <div className="form-error">{formError || authError}</div>
+          )}
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input
@@ -64,7 +85,19 @@ const Login = () => {
           </div>
 
           <button type="submit" className="login-btn">Sign In</button>
+          <button type="button" className="login-btn" onClick={handleUseDemo}>
+            Use Demo Login
+          </button>
+          <button type="button" className="login-btn" onClick={handleUseAdminDemo}>
+            Use Admin Demo
+          </button>
         </form>
+
+        <div className="demo-hint">
+          Member demo: {demoCredentials.member.email} / {demoCredentials.member.password}
+          <br />
+          Admin demo: {demoCredentials.admin.email} / {demoCredentials.admin.password}
+        </div>
 
         <div className="signup-link">
           Don't have an account? <button onClick={handleRegister} className="register-link-btn">Sign up here</button>

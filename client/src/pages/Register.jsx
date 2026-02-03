@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Register.css';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [formError, setFormError] = useState('');
   const navigate = useNavigate();
+  const { register, authError } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log('Registration attempt:', { name, email, password });
+    const result = register({ name, email, password });
+    if (result.error) {
+      setFormError(result.error);
+      return;
+    }
+    navigate('/');
   };
 
   const handleLogin = () => {
@@ -27,6 +34,9 @@ const Register = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="register-form">
+          {(formError || authError) && (
+            <div className="form-error">{formError || authError}</div>
+          )}
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
             <input
